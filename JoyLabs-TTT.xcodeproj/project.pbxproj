@@ -56,6 +56,7 @@
 		2C3FC5B923E2347C00F8A466 /* JoyLabs-TTT */ = {
 			isa = PBXGroup;
 			children = (
+				2C3FC5CE23E39DB400F8A466 /* Model */,
 				2C3FC5BA23E2347C00F8A466 /* AppDelegate.swift */,
 				2C3FC5BC23E2347C00F8A466 /* SceneDelegate.swift */,
 				2C3FC5BE23E2347C00F8A466 /* ContentView.swift */,
@@ -73,6 +74,13 @@
 				2C3FC5C323E2347E00F8A466 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2C3FC5CE23E39DB400F8A466 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

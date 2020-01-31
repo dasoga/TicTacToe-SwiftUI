@@ -8,54 +8,37 @@
 
 import SwiftUI
 
-enum tttElementStatus {
-    case nonoe
-    case x
-    case o
-}
-
-struct tttElementView: View {
-    var value = "O"
-    var body: some View {
-        Button("--") {
-            print("O")
-        }
-        .font(.largeTitle)
-        .background(Color.gray)
-        .padding()
-    }
-}
-
-struct tttRowElementsView: View {
-    var body: some View {
-        HStack {
-            tttElementView()
-            Divider()
-            tttElementView()
-            Divider()
-            tttElementView()
-        }
-    }
-}
-
 struct ContentView: View {
+    let buttons = [
+        ["", "X", "X"],
+        ["X", "X", "X"],
+        ["X", "X", "X"]
+    ]
     
     var body: some View {
-        NavigationView {
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            
             VStack {
-                Button("Restart") {
-                    print("restarting...")
-                }
-                VStack {
-                    tttRowElementsView()
-                    Divider()
-                    tttRowElementsView()
-                    Divider()
-                    tttRowElementsView()
+                VStack (spacing: 12) {
+                    ForEach(buttons, id: \.self) { row in
+                        HStack (spacing: 12) {
+                            ForEach(row, id: \.self) { button in
+                                Text(button)
+                                    .font(.largeTitle)
+                                    .frame(width: self.buttonWidth(), height: self.buttonWidth())
+                                    .foregroundColor(.white)
+                                    .background(Color.blue)
+                            }
+                        }
+                    }
                 }
             }
-            .navigationBarTitle("Tic Tac Toe")
         }
+    }
+    
+    func buttonWidth() -> CGFloat {
+        return (UIScreen.main.bounds.width - 4 * 12) / 3
     }
 }
 
