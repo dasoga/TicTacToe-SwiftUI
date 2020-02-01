@@ -54,7 +54,7 @@ class Game {
             self.elements.append(TTTElement())
         }
     }
-     
+    
     func changeStatus(_ index: Int, currentPlayer: TTTPlayer){
         let currentElement = elements[index]
         if !currentElement.selected{
@@ -65,7 +65,8 @@ class Game {
             }
             elements[index].selected = true
         }
-            gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
+        gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
+        validateGameStatus()
     }
     
     private func resetGame(){
@@ -73,12 +74,13 @@ class Game {
             elements[i].status = .none
             elements[i].selected = false
         }
+        gameOver.toggle()   
     }
     
     
     private func validateGameStatus() {
         if allCellsSelected() {
-            gameOver = true
+            gameOver.toggle()
             resetGame()
         }
     }
