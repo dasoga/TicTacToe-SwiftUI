@@ -63,20 +63,8 @@ struct ContentView: View {
     
     private func cellPressed(_ index: Int) {
         gameElements.changeStatus(index, currentPlayer: currentPlayer)
-        currentPlayer = self.getCurrentPlayer()
-        validateGameStatus()
-    }
-    
-    private func getCurrentPlayer() -> TTTPlayer{
-        return currentPlayer == .P1 ? .P2 : .P1
-    }
-    
-    private func validateGameStatus() {
-        let elements = gameElements.elements.filter({ $0.status == .none })
-        if elements.count == 0 {
-            gameOver.toggle()
-            gameElements.resetGame()
-        }
+        currentPlayer = gameElements.gameCurrentPlayer
+        gameOver = gameElements.gameOver
     }
 }
 
