@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C03A23023E3DC0600DC521E /* TTTElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03A22F23E3DC0600DC521E /* TTTElement.swift */; };
 		2C3FC5BB23E2347C00F8A466 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FC5BA23E2347C00F8A466 /* AppDelegate.swift */; };
 		2C3FC5BD23E2347C00F8A466 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FC5BC23E2347C00F8A466 /* SceneDelegate.swift */; };
 		2C3FC5BF23E2347C00F8A466 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FC5BE23E2347C00F8A466 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C03A22F23E3DC0600DC521E /* TTTElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTTElement.swift; sourceTree = "<group>"; };
 		2C3FC5B723E2347C00F8A466 /* JoyLabs-TTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JoyLabs-TTT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3FC5BA23E2347C00F8A466 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C3FC5BC23E2347C00F8A466 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		2C3FC5CE23E39DB400F8A466 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C03A22F23E3DC0600DC521E /* TTTElement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C3FC5BB23E2347C00F8A466 /* AppDelegate.swift in Sources */,
+				2C03A23023E3DC0600DC521E /* TTTElement.swift in Sources */,
 				2C3FC5BD23E2347C00F8A466 /* SceneDelegate.swift in Sources */,
 				2C3FC5BF23E2347C00F8A466 /* ContentView.swift in Sources */,
 			);
