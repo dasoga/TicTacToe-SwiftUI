@@ -50,10 +50,10 @@ class Game {
     
     var gameOver: (Bool, TTTElementStatus) {
         get {
-            if allCellsSelected() {
-                return (true, .none)
-            }else if winner().0 {
+            if winner().0 {
                 return (true, winner().1)
+            }else if allCellsSelected() {
+                return (true, .none)
             }
             return (false, .none)
         }
