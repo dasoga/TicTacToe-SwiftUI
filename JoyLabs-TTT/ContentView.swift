@@ -20,6 +20,14 @@ struct ContentView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack (spacing: 12) {
+                
+                Button(action: {
+                    self.gameElements.resetGame()
+                }) {
+                    Text("Reset Game")
+                        .font(.largeTitle)
+                }
+                
                 HStack {
                     TTTCell(element: gameElements.elements[0]) {
                         self.cellPressed(0)
@@ -55,7 +63,8 @@ struct ContentView: View {
                 }
             }
             .alert(isPresented: $gameOver) {
-                Alert(title: Text("Game Over"), message: Text("Win player"), dismissButton: .default(Text("OK")){
+                Alert(title: Text((self.gameElements.gameOver.1 == .none) ? "Game Over" : "Winner"), message: Text((self.gameElements.gameOver.1 != .none) ? ((self.gameElements.gameOver.1 == .x) ? "Player 1 won" : "Player 2 won") : "Draw"), dismissButton: .default(Text("OK")){
+                    self.currentPlayer = .P1
                     self.gameElements.resetGame()
                 })
             }
@@ -66,7 +75,7 @@ struct ContentView: View {
     private func cellPressed(_ index: Int) {
         gameElements.changeStatus(index, currentPlayer: currentPlayer)
         currentPlayer = gameElements.gameCurrentPlayer
-        gameOver = gameElements.gameOver
+        gameOver = gameElements.gameOver.0
     }
 }
 
