@@ -76,7 +76,7 @@ class Game {
         gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
     }
     
-    private func resetGame(){
+    func resetGame(){
         for i in 0...8 {
             elements[i].status = .none
             elements[i].selected = false

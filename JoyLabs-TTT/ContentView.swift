@@ -55,7 +55,9 @@ struct ContentView: View {
                 }
             }
             .alert(isPresented: $gameOver) {
-                Alert(title: Text("Game Over"), message: Text("Win player"), dismissButton: .default(Text("OK")))
+                Alert(title: Text("Game Over"), message: Text("Win player"), dismissButton: .default(Text("OK")){
+                    self.gameElements.resetGame()
+                })
             }
         }
     }
