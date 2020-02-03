@@ -47,7 +47,15 @@ class TTTElement: ObservableObject {
 class Game {
     var elements = [TTTElement]()
     @Published var gameCurrentPlayer = TTTPlayer.P1
-    @Published var gameOver = false
+    
+    var gameOver: Bool {
+        get {
+            if allCellsSelected() {
+                return true
+            }
+            return false
+        }
+    }
     
     init(){
         for _ in 0...8 {
@@ -66,22 +74,12 @@ class Game {
             elements[index].selected = true
         }
         gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
-        validateGameStatus()
     }
     
     private func resetGame(){
         for i in 0...8 {
             elements[i].status = .none
             elements[i].selected = false
-        }
-        gameOver.toggle()   
-    }
-    
-    
-    private func validateGameStatus() {
-        if allCellsSelected() {
-            gameOver.toggle()
-            resetGame()
         }
     }
     
