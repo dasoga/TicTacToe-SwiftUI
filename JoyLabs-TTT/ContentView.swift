@@ -17,67 +17,85 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)            
-                VStack (spacing: 12) {
-                    Button(action: {
-                        self.resetGamePressed()
-                    }) {
-                        Image(systemName: "arrow.2.circlepath")
-                            .resizable()
-                            .frame(width: 30, height: 25)
-                        Text("Reset")
-                            .font(.caption)
-                            .foregroundColor(.green)
-                    }
-                    
+            Color.black.edgesIgnoringSafeArea(.all)
+        VStack {
+            VStack {
+                Button(action: {
+                    self.resetGamePressed()
+                }) {
+                    Image(systemName: "arrow.2.circlepath")
+                        .resizable()
+                        .frame(width: 40, height: 35)
+                }
+                Text("Reset")
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                
+                Spacer()
+            }
+            .padding()
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.height / 4, alignment: .trailing)
+
+            VStack (spacing: 12) {
+                VStack (alignment: .leading, spacing: 10) {
                     Text(currentPlayer.title)
                         .foregroundColor(.white)
                         .font(.largeTitle)
-                    
-                    HStack {
-                        TTTCell(element: gameElements.elements[0]) {
-                            self.cellPressed(0)
-                        }
-                        TTTCell(element: gameElements.elements[1]) {
-                            self.cellPressed(1)
-                        }
-                        TTTCell(element: gameElements.elements[2]) {
-                            self.cellPressed(2)
-                        }
+                    Divider()
+                }.padding(.horizontal, 12)
+                
+                HStack {
+                    TTTCell(element: gameElements.elements[0]) {
+                        self.cellPressed(0)
                     }
-                    HStack {
-                        TTTCell(element: gameElements.elements[3]) {
-                            self.cellPressed(3)
-                        }
-                        TTTCell(element: gameElements.elements[4]) {
-                            self.cellPressed(4)
-                        }
-                        TTTCell(element: gameElements.elements[5]) {
-                            self.cellPressed(5)
-                        }
+                    TTTCell(element: gameElements.elements[1]) {
+                        self.cellPressed(1)
                     }
-                    HStack {
-                        TTTCell(element: gameElements.elements[6]) {
-                            self.cellPressed(6)
-                        }
-                        TTTCell(element: gameElements.elements[7]) {
-                            self.cellPressed(7)
-                        }
-                        TTTCell(element: gameElements.elements[8]) {
-                            self.cellPressed(8)
-                        }
+                    TTTCell(element: gameElements.elements[2]) {
+                        self.cellPressed(2)
                     }
-                    
-                    Text("Powered by Joy Labs")
-                        .foregroundColor(.gray)
-                        .font(.footnote)
                 }
+                HStack {
+                    TTTCell(element: gameElements.elements[3]) {
+                        self.cellPressed(3)
+                    }
+                    TTTCell(element: gameElements.elements[4]) {
+                        self.cellPressed(4)
+                    }
+                    TTTCell(element: gameElements.elements[5]) {
+                        self.cellPressed(5)
+                    }
+                }
+                HStack {
+                    TTTCell(element: gameElements.elements[6]) {
+                        self.cellPressed(6)
+                    }
+                    TTTCell(element: gameElements.elements[7]) {
+                        self.cellPressed(7)
+                    }
+                    TTTCell(element: gameElements.elements[8]) {
+                        self.cellPressed(8)
+                    }
+                }
+                                
+            }
             .alert(isPresented: $gameOver) {
                 Alert(title: Text((self.gameElements.gameOver.1 == .none) ? "Game Over" : "Winner"), message: Text((self.gameElements.gameOver.1 != .none) ? ((self.gameElements.gameOver.1 == .x) ? "Player 1 won" : "Player 2 won") : "Draw"), dismissButton: .default(Text("OK")){
                     self.resetGamePressed()
-                })
+                    })
             }
+            
+            Spacer()
+            
+            VStack (alignment: .trailing){
+                Text("Powered by Joy Labs")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+            }
+            
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+    }
     }
 
     
