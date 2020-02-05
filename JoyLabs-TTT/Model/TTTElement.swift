@@ -74,8 +74,8 @@ class Game {
                 elements[index].status = .o
             }
             elements[index].selected = true
+            gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
         }
-        gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
     }
     
     func resetGame(){

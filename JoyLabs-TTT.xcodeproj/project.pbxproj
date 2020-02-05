@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		2C03A22F23E3DC0600DC521E /* TTTElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTTElement.swift; sourceTree = "<group>"; };
-		2C3FC5B723E2347C00F8A466 /* JoyLabs-TTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JoyLabs-TTT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C3FC5B723E2347C00F8A466 /* Test-TTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-TTT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3FC5BA23E2347C00F8A466 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C3FC5BC23E2347C00F8A466 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2C3FC5BE23E2347C00F8A466 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		2C3FC5B823E2347C00F8A466 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C3FC5B723E2347C00F8A466 /* JoyLabs-TTT.app */,
+				2C3FC5B723E2347C00F8A466 /* Test-TTT.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,7 +103,7 @@
 			);
 			name = "JoyLabs-TTT";
 			productName = "JoyLabs-TTT";
-			productReference = 2C3FC5B723E2347C00F8A466 /* JoyLabs-TTT.app */;
+			productReference = 2C3FC5B723E2347C00F8A466 /* Test-TTT.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -297,15 +297,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"JoyLabs-TTT/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MCA4N9ZYA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "JoyLabs-TTT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joylabs.JoyLabs-TTT";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dasoga-test-TTT";
+				PRODUCT_NAME = "Test-TTT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -316,15 +318,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"JoyLabs-TTT/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MCA4N9ZYA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "JoyLabs-TTT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joylabs.JoyLabs-TTT";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dasoga-test-TTT";
+				PRODUCT_NAME = "Test-TTT";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
