@@ -25,7 +25,7 @@ enum TTTElementStatus {
 }
 
 enum TTTPlayer {
-    case P1, P2
+    case P1, P2, AI
     
     var title: String {
         switch self {
@@ -33,20 +33,28 @@ enum TTTPlayer {
             return "Player 1"
         case .P2:
             return "Player 2"
+        case .AI:
+            return "AI"
         }
     }
+}
+
+enum GameMode {
+    case OnePlayer, TwoPlayers
 }
 
 class TTTElement: ObservableObject {
     let id = UUID()
     @Published var status: TTTElementStatus = .none
     var selected = false
+    var winner = false
 }
 
 
 class Game {
     var elements = [TTTElement]()
     @Published var gameCurrentPlayer = TTTPlayer.P1
+    @Published var gameMode = GameMode.OnePlayer
     
     var gameOver: (Bool, TTTElementStatus) {
         get {
@@ -65,23 +73,45 @@ class Game {
         }
     }
     
-    func changeStatus(_ index: Int, currentPlayer: TTTPlayer){
+    func changeStatus(_ index: Int, currentPlayer: TTTPlayer) {
         let currentElement = elements[index]
         if !currentElement.selected{
-            if currentPlayer == .P1{
-                elements[index].status = .x
-            }else{
-                elements[index].status = .o
-            }
             elements[index].selected = true
-            gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
+            if gameMode == .OnePlayer {
+                if currentPlayer == .P1 {
+                    elements[index].status = .x
+                    self.aiMove()
+                }
+            } else{
+                if currentPlayer == .P1{
+                    elements[index].status = .x
+                }else{
+                    elements[index].status = .o
+                }
+                gameCurrentPlayer = currentPlayer == .P1 ? .P2 : .P1
+            }
+        }
+    }
+    
+    private func aiMove() {
+        var emptyElements: [TTTElement] = []
+        for element in elements {
+            if !element.selected {
+                emptyElements.append(element)
+            }
+        }
+        
+        if let element = emptyElements.randomElement() {
+            element.status = .o
+            element.selected = true
         }
     }
     
     func resetGame(){
-        for i in 0...8 {
-            elements[i].status = .none
-            elements[i].selected = false
+        for element in elements{
+            element.status = .none
+            element.selected = false
+            element.winner = false
         }
         gameCurrentPlayer = .P1
     }
@@ -134,18 +164,28 @@ class Game {
             [2,4,6],
         ]
         var count: Int = 0
+        var winnerCombination: [Int] = []
         for option in options {
             for winIndex in option {
                 if elements[winIndex].status == status {
                     count += 1
+                    winnerCombination.append(winIndex)
                     if count == 3 {
+                        winnersBackground(winnerCombination)
                         return true
                     }
                 }
             }
             count = 0
+            winnerCombination = []
         }
         
         return false
+    }
+    
+    private func winnersBackground (_ winnerCombination: [Int]) {
+        for winner in winnerCombination {
+            elements[winner].winner = true
+        }
     }
 }

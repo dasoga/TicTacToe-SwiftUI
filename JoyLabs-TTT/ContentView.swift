@@ -14,6 +14,8 @@ struct ContentView: View {
     private var gameElements = Game()
     @State var currentPlayer = TTTPlayer.P1
     @State private var gameOver = false
+    @State private var initialGame = true
+    @State var gameMode = GameMode.OnePlayer
     
     var body: some View {
         ZStack {
@@ -35,6 +37,13 @@ struct ContentView: View {
                 }
                 .padding()
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.height / 4, alignment: .trailing)
+                .alert(isPresented: $initialGame) {
+                    Alert(title: Text("Play as:"), message: Text(""), primaryButton: .default(Text("One player")){
+                        self.configureGameAsOnePlayer()
+                        }, secondaryButton: .default(Text("Two players")){
+                            self.configureGameAsTwoPlayers()
+                    })
+                }
                 
                 VStack (spacing: 12) {
                     VStack (alignment: .leading, spacing: 10) {
@@ -103,11 +112,23 @@ struct ContentView: View {
         gameElements.changeStatus(index, currentPlayer: currentPlayer)
         currentPlayer = gameElements.gameCurrentPlayer
         gameOver = gameElements.gameOver.0
+        gameMode = gameElements.gameMode
     }
     
     private func resetGamePressed() {
         self.currentPlayer = .P1
         self.gameElements.resetGame()
+        self.initialGame.toggle()
+        self.gameOver = gameElements.gameOver.0
+        print(self.gameOver)
+    }
+
+    private func configureGameAsOnePlayer() {
+        gameElements.gameMode = .OnePlayer
+    }
+    
+    private func configureGameAsTwoPlayers() {
+        gameElements.gameMode = .TwoPlayers
     }
 }
 
@@ -124,7 +145,7 @@ struct TTTCell: View {
                 .font(.largeTitle)
                 .frame(width: self.buttonWidth(), height: self.buttonWidth())
                 .foregroundColor(.white)
-                .background(Color.blue)
+                .background(element.winner ? Color.green : Color.blue)
             
         }
     }
