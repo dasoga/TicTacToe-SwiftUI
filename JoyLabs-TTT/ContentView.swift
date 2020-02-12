@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var currentPlayer = TTTPlayer.P1
     @State private var gameOver = false
     @State private var initialGame = true
+    @State private var showAlert = true
     @State var gameMode = GameMode.OnePlayer
     
     var body: some View {
@@ -37,13 +38,6 @@ struct ContentView: View {
                 }
                 .padding()
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.height / 4, alignment: .trailing)
-                .alert(isPresented: $initialGame) {
-                    Alert(title: Text("Play as:"), message: Text(""), primaryButton: .default(Text("One player")){
-                        self.configureGameAsOnePlayer()
-                        }, secondaryButton: .default(Text("Two players")){
-                            self.configureGameAsTwoPlayers()
-                    })
-                }
                 
                 VStack (spacing: 12) {
                     VStack (alignment: .leading, spacing: 10) {
@@ -88,10 +82,20 @@ struct ContentView: View {
                     }
                     
                 }
-                .alert(isPresented: $gameOver) {
-                    Alert(title: Text((self.gameElements.gameOver.1 == .none) ? "Game Over" : "Winner"), message: Text((self.gameElements.gameOver.1 != .none) ? ((self.gameElements.gameOver.1 == .x) ? "Player 1 won" : "Player 2 won") : "Draw"), dismissButton: .default(Text("OK")){
-                        self.resetGamePressed()
+                .alert(isPresented: $showAlert) {
+                    if gameOver {
+                        return Alert(title: Text((self.gameElements.gameOver.1 == .none) ? "Game Over" : "Winner"), message: Text((self.gameElements.gameOver.1 != .none) ? ((self.gameElements.gameOver.1 == .x) ? "Player 1 won" : "Player 2 won") : "Draw"), dismissButton: .default(Text("OK")){
+                            self.resetGamePressed()
+                            })
+                    }
+                    
+                    
+                    return Alert(title: Text("Play as:"), message: Text(""), primaryButton: .default(Text("One player")){
+                        self.configureGameAsOnePlayer()
+                        }, secondaryButton: .default(Text("Two players")){
+                            self.configureGameAsTwoPlayers()
                         })
+                    
                 }
                 
                 Spacer()
@@ -113,14 +117,14 @@ struct ContentView: View {
         currentPlayer = gameElements.gameCurrentPlayer
         gameOver = gameElements.gameOver.0
         gameMode = gameElements.gameMode
+        showAlert = gameOver
     }
     
     private func resetGamePressed() {
         self.currentPlayer = .P1
         self.gameElements.resetGame()
         self.initialGame.toggle()
-        self.gameOver = gameElements.gameOver.0
-        print(self.gameOver)
+        showAlert = initialGame
     }
 
     private func configureGameAsOnePlayer() {
