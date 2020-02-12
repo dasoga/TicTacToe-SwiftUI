@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var gameOver = false
     @State private var initialGame = true
     @State private var showAlert = true
+    @State private var disableResetButton = true
     @State var gameMode = GameMode.OnePlayer
     
     var body: some View {
@@ -29,7 +30,7 @@ struct ContentView: View {
                         Image(systemName: "arrow.2.circlepath")
                             .resizable()
                             .frame(width: 40, height: 35)
-                    }
+                    }.disabled(disableResetButton)
                     Text("Reset")
                         .font(.caption)
                         .foregroundColor(.blue)
@@ -118,13 +119,17 @@ struct ContentView: View {
         gameOver = gameElements.gameOver.0
         gameMode = gameElements.gameMode
         showAlert = gameOver
+        if disableResetButton {
+            disableResetButton = false
+        }
     }
     
     private func resetGamePressed() {
         self.currentPlayer = .P1
         self.gameElements.resetGame()
-        self.initialGame.toggle()
+        initialGame = true
         showAlert = initialGame
+        disableResetButton = true
     }
 
     private func configureGameAsOnePlayer() {
